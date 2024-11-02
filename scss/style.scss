@@ -27,3 +27,174 @@ body {
     font-size: 20px;
   }
 }
+
+#btn1 {
+  background-color: black;
+  color: white;
+  border: 2px solid black;
+  transition: all 0.5s;
+
+  &:hover {
+    background-color: white;
+    color: black;
+    border-color: black;
+    box-shadow: 4px 4px 0px black;
+    transform: translate(-5px, -5px);
+  }
+}
+
+#btn2 {
+  position: relative;
+  top: 0;
+  left: 0;
+  background-color: black;
+  border: 2px solid black;
+  color: white;
+  transition: all 0.5s;
+
+  &:hover {
+    top: -4px;
+    left: -2px;
+    background-color: white;
+    color: black;
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        width: 100%;
+        height: 100%;
+        background-color: black;
+        z-index: -1;
+      }
+  }
+}
+
+#btn3 {
+  position: relative;
+  background-color: green;
+  color: white;
+  border: 2px solid black;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 20px;
+    height: 100%;
+    clip-path: polygon(40% 0%, 100% 0%, 60% 100%, 0% 100%);
+    background-color: white;
+    transition: left 1s;
+    opacity: 0.5;
+  }
+
+  &:hover {
+    background-color: rgb(14, 173, 14);
+
+    &::before {
+      left: 100%;
+    }
+  }
+}
+
+#shape1 {
+  width: 230px;
+  height: 230px;
+  background: grey;
+  transition: background-color 1s;
+
+  &::after {
+    content: 'Hello!';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: transparent;
+    font-size: 18px;
+    font-weight: bold;
+    transition: color 1s;
+  }
+
+  &:hover {
+    background-color: yellow;
+
+    &::after {
+      color: black;
+    }
+  }
+}
+
+#shape2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100px;
+  height: 100px;
+  background: red;
+  animation: moveAndChangeShape 7s infinite linear;
+}
+
+@keyframes moveAndChangeShape {
+  0%, 100% {
+    top: 0;
+    left: 0;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+    background-color: red;
+  }
+
+  25% {
+    top: 0;
+    left: calc(100% - 100px);
+    clip-path: circle(50%);
+    background-color: green;
+  }
+
+  50% {
+    top: calc(100% - 100px);
+    left: calc(100% - 100px);
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    background-color: yellow;
+  }
+
+  75% {
+    top: calc(100% - 100px);
+    left: 0;
+    clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+    background-color: orange;
+  }
+}
+
+#figure1 {
+  position: relative;
+  width: 250px;
+  z-index: 1;
+
+  img {
+    display: block;
+    width: 100%;
+    transition: filter 1s;
+  }
+
+  figcaption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: pink;
+    color: white;
+    padding: 5px;
+    transition: transform 0.5s;
+    z-index: -1;
+  }
+
+  &:hover img {
+    filter: grayscale(100%);
+  }
+
+  &:hover figcaption {
+    transform: translateY(100%);
+  }
+}
